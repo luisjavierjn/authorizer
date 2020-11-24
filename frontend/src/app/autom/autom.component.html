@@ -1,0 +1,44 @@
+<div align="center">
+    <img src="assets/background-top.png" alt="Nequi" height="70px" width="1480px">
+</div> 
+
+<div class="box">
+
+    <div class="table table-responsive table-bordered">
+
+        <div id="container1">
+
+            <div id="col1">
+
+                <app-menu></app-menu>
+
+            </div>
+            <div id="col2">
+
+                <!-- container -->
+                <div class="container">
+
+                    <!-- show page header -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class='page-header'><h1>{{title}}</h1></div>
+                        </div>
+                    </div>                    
+                    
+                    <app-read-autom *ngIf="show_read_autom_html" 
+                        (show_config_autom_event)="showConfigAutoms($event)">
+                    </app-read-autom>  
+
+                    <app-config-autom *ngIf="show_config_autom_html" 
+                        [param_code]="param_code" 
+                        (show_read_autom_event)="showReadAutoms($event)">
+                    </app-config-autom>                    
+
+                </div>
+                <!-- /container -->
+
+            </div>
+        </div>
+    </div>
+
+</div>

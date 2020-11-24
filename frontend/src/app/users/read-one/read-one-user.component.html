@@ -1,0 +1,83 @@
+<div class="row m-b-18px">
+    <div class="col-md-12">
+        <a (click)="readUsers()" class='btn btn-primary pull-right'>
+            <span class='glyphicon glyphicon-list'></span> Read Users
+        </a>
+    </div>
+</div>
+ 
+<div class="row">
+    <div class="col-md-12">
+        <!-- HTML table for displaying a user details -->
+        <table class='table table-hover table-responsive table-bordered'>
+
+            <tr>
+                <td class="w-40-pct">Peoplesoft</td>
+                <td>{{user?.id}}</td>
+            </tr>
+
+            <tr>
+                <td class="w-40-pct">Username</td>
+                <td>{{user?.username}}</td>
+            </tr>
+ 
+            <tr>
+                <td>Phone Number</td>
+                <td>{{user?.phone_number}}</td>
+            </tr>
+ 
+            <tr>
+                <td>Email</td>
+                <td>{{user?.email}}</td>
+            </tr>
+
+            <tr>
+                <td>Area</td>
+                <td>{{user?.area}}</td>
+            </tr>
+
+            <tr>
+                <td>Status</td>
+                <td>
+                    <div *ngIf="user">
+                        <td>{{user?.status==1 ? 'active' : 'inactive'}}</td>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Role</td>
+                <td>
+                    <div *ngIf="user">
+                        <div *ngFor="let role of roles">
+                            <div *ngIf="user.fk_roles == role.id">
+                            {{role.rolename}}
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Creator User</td>
+                <td>{{user?.creator_user}}</td>
+            </tr>
+ 
+             <tr>
+                <td>Modifier User</td>
+                <td>{{user?.modifier_user}}</td>
+            </tr>
+
+            <tr>
+                <td>Creation Date</td>
+                <td>{{user?.creation_date}}</td>
+            </tr>
+
+            <tr>
+                <td>Update Date</td>
+                <td>{{user?.update_date}}</td>
+            </tr>
+
+        </table>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div align="center">
+    <img src="assets/background-top.png" alt="Nequi" height="70px" width="1480px">
+</div>
+
+<div class="box">
+    <div id="containe1">
+        <div id=col1>
+            <app-menu></app-menu>
+        </div>
+        <div id=col2>
+            <div class="table table-responsive table-bordered">
+                <!-- container -->
+                <div class="container">
+
+                    <!-- show page header -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class='page-header'>
+                                <h1>{{title}}</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <app-read-transactions *ngIf="show_read_transaction_html"></app-read-transactions>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /container -->

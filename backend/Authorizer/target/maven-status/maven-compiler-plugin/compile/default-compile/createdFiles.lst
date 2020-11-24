@@ -1,0 +1,14 @@
+com\banistmo\auth\web\rest\ParamController.class
+com\banistmo\auth\web\utils\Credentials.class
+com\banistmo\auth\web\rest\ChannelsController.class
+com\banistmo\auth\web\rest\AutomJobsController.class
+com\banistmo\auth\web\rest\DataTransactionController.class
+com\banistmo\auth\web\utils\StringListWrapper.class
+com\banistmo\auth\web\rest\FilesController.class
+com\banistmo\auth\web\rest\BatchController.class
+com\banistmo\auth\web\rest\RolesController.class
+com\banistmo\auth\web\rest\EntryWebapp.class
+com\banistmo\auth\web\utils\LdapAuth.class
+com\banistmo\auth\web\rest\AuthController.class
+com\banistmo\auth\web\rest\MerchantController.class
+com\banistmo\auth\web\rest\UsersController.class

@@ -1,0 +1,78 @@
+<div class="row m-b-18px">
+    <div class="col-md-12">
+        <a (click)="readMerchants()" class='btn btn-primary pull-right'>
+            <span class='glyphicon glyphicon-list'></span> Read Merchants
+        </a>
+    </div>
+</div>
+ 
+<div class="row">
+    <div class="col-md-12">
+        <!-- HTML table for displaying a merchant details -->
+        <table class='table table-hover table-responsive table-bordered'>
+
+            <tr>
+                <td class="w-40-pct">ID</td>
+                <td>{{merchant?.merchantId}}</td>
+            </tr>
+
+            <tr>
+                <td class="w-40-pct">Merchant Name</td>
+                <td>{{merchant?.merchantName}}</td>
+            </tr>
+ 
+            <tr>
+                <td>Account Hogan Nro</td>
+                <td>{{merchant?.accountHoganNo}}</td>
+            </tr>
+ 
+            <tr>
+                <td>Ruc Nro</td>
+                <td>{{merchant?.rucNo}}</td>
+            </tr>
+
+            <tr>
+                <td>Check Digit</td>
+                <td>{{merchant?.checkDigit}}</td>
+            </tr>
+
+            <tr>
+                <td>% Retention</td>
+                <td>{{merchant?.percentageRetention}}</td>
+            </tr>
+ 
+             <tr>
+                <td>Commission</td>
+                <td>{{merchant?.commission}}</td>
+            </tr>
+
+            <tr>
+                <td>Commission Itbms</td>
+                <td>{{merchant?.commissionItbms}}</td>
+            </tr>
+
+            <tr>
+                <td>Status</td>
+                <td>
+                    <div *ngIf="merchant">
+                        <td>{{merchant?.status==1 ? 'Active' : 'Inactive'}}</td>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Channel</td>
+                <td>
+                    <div *ngIf="merchant">
+                        <div *ngFor="let channel of channels">
+                            <div *ngIf="merchant.channel == channel.id">
+                            {{channel.name}}
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</div>

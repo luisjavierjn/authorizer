@@ -1,0 +1,152 @@
+<div class="row m-b-18px">
+    <div class="col-md-12">
+        <a (click)="readUsers()" class='btn btn-primary pull-right'>
+            <span class='glyphicon glyphicon-list'></span> Read Users
+        </a>
+    </div>
+</div>
+ 
+<!-- HTML form for creating a user -->
+<div class="row">
+<div class="col-md-12">
+ 
+<!--
+    1. Bind our HTML form to Angular using [formGroup]
+    2. If form was submitted, call createUser() method of CreateUserComponent
+-->
+<form [formGroup]="create_user_form" (ngSubmit)="createUser()">
+<table class="table table-hover table-responsive table-bordered">
+
+    <tr>
+        <td>Peoplesoft</td>
+        <td>
+            <!-- Bind this input field to our 'angular form field' using formControlName -->
+            <input
+                formControlName="id"
+                name="id" type="text"
+                class="form-control" required />
+ 
+            <!-- show this error if the field is 'empty' and 'touched' -->
+            <div
+                *ngIf="create_user_form.get('id').touched && create_user_form.get('id').hasError('required')"
+                class="alert alert-danger">
+                Peoplesoft is required.
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Username</td>
+        <td>
+            <!-- Bind this input field to our 'angular form field' using formControlName -->
+            <input
+                formControlName="username"
+                name="username" type="text"
+                class="form-control" required />
+ 
+            <!-- show this error if the field is 'empty' and 'touched' -->
+            <div
+                *ngIf="create_user_form.get('username').touched && create_user_form.get('username').hasError('required')"
+                class="alert alert-danger">
+                Username is required.
+            </div>
+        </td>
+    </tr>
+ 
+    <tr>
+        <td>Phone Number</td>
+        <td>
+            <input
+                formControlName="phone_number"
+                name="phone_number" class="form-control" required />
+ 
+            <!-- show this error if the field is 'empty' and 'touched' -->
+            <div
+                *ngIf="create_user_form.get('phone_number').touched && create_user_form.get('phone_number').hasError('required')"
+                class="alert alert-danger">
+                Phone number is required.
+            </div>
+        </td>
+    </tr>
+ 
+    <tr>
+        <td>Email</td>
+        <td>
+            <input
+                formControlName="email"
+                name="email" class="form-control" required />
+ 
+                <!-- show this error if the field is 'empty' and 'touched' -->
+                <div
+                    *ngIf="create_user_form.get('email').touched && create_user_form.get('email').hasError('required')"
+                    class="alert alert-danger">
+                    Email is required.
+                </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Area</td>
+        <td>
+            <input
+                formControlName="area"
+                name="area" class="form-control" required />
+ 
+                <!-- show this error if the field is 'empty' and 'touched' -->
+                <div
+                    *ngIf="create_user_form.get('area').touched && create_user_form.get('area').hasError('required')"
+                    class="alert alert-danger">
+                    Area is required.
+                </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Status</td>
+        <td>
+            <select formControlName="status" name='status' class='form-control'>
+                <option *ngFor="let a of actives" value='{{a.id}}'>
+                    {{a.text}}
+                </option>
+            </select>            
+            
+            <!-- show this error if the field is 'touched' and 'empty' -->
+            <div
+                *ngIf="create_user_form.get('status').touched && create_user_form.get('status').hasError('required')"
+                class="alert alert-danger">
+                Status is required.
+            </div>
+        </td>
+    </tr>    
+
+    <tr>
+        <td>Role</td>
+        <td>
+            <select formControlName="fk_roles" name="fk_roles" class="form-control">
+                <option *ngFor="let role of roles" value="{{role.id}}">
+                    {{role.rolename}}
+                </option>
+            </select>
+            <!-- show this error if the field is 'empty' and 'touched' -->
+            <div
+                *ngIf="create_user_form.get('fk_roles').touched && create_user_form.get('fk_roles').hasError('required')"
+                class="alert alert-danger">
+                Role is required.
+            </div>
+        </td>
+    </tr>
+ 
+    <tr>
+        <td></td>
+        <td>
+            <!-- disable the submit button if the form is 'invalid' -->
+            <button class="btn btn-primary" type="submit" [disabled]="create_user_form.invalid">
+                <span class="glyphicon glyphicon-plus"></span> Create
+            </button>
+        </td>
+    </tr>
+</table>
+</form>
+ 
+</div>
+</div>

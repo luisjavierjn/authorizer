@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: Authorizer
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: luisjavierjn
+Implementation-Vendor-Id: com.banistmo.auth
+Build-Jdk: 1.8.0_151
+Implementation-URL: http://projects.spring.io/spring-boot/authorizer/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+Main-Class: EntryWebapp
+

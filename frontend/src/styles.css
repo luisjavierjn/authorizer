@@ -1,0 +1,41 @@
+/* You can add global styles to this file, and also import other style files */
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#box {
+    position: absolute;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* table */
+#container1 {
+    float: left;
+    width: 100%;
+    display: table;
+    position: absolute;
+    height: auto;
+}
+#col1 {
+    float: left;
+    width: 22%;
+    height: 100%;
+    
+    vertical-align: top;
+    display: table-cell;
+}
+#col2 {
+    float: left;
+    width: 78%;
+    height: 100%;
+    vertical-align: top;
+    display: table-cell;
+}

@@ -1,0 +1,97 @@
+<div align="center">
+    <img id="logoNequi" src="assets/background-top.png" alt="Nequi" height="70px" width="1480px">
+</div>
+
+<div class="box">
+
+    <div class="table table-responsive table-bordered">
+
+        <div id="container1">
+
+            <div id="col1">
+
+                <app-menu></app-menu>
+
+            </div>
+            <div id="col2">
+
+                <!-- container -->
+                <div class="container">
+
+                    <!-- show page header -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class='page-header'>
+                                <h1>{{title}}</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Show this view if "show_read_users_html" property of AppComponent is true. -->
+                    <app-read-users *ngIf="show_read_users_html" 
+                        (show_create_user_event)="showCreateUser($event)" 
+                        (show_read_one_user_event)="showReadOneUser($event)"
+                        (show_update_user_event)="showUpdateUser($event)" 
+                        (show_delete_user_event)="showDeleteUser($event)">
+                    </app-read-users>
+
+                    <!--
+                    * Show this view if "show_create_user_html" is true.
+                
+                    * If (show_read_users_event) was emitted in CreateUserComponent,
+                    trigger showReadUsers() method in AppComponent.
+                -->
+                    <app-create-user *ngIf="show_create_user_html" 
+                        (show_read_users_event)="showReadUsers($event)">
+                    </app-create-user>
+
+                    <!--
+                    * Show this view if "show_read_one_user_html" is true.
+                
+                    * If (show_read_users_event) was emmited in ReadOneUserComponent,
+                    trigger showReadUsers() method in AppComponent.
+                
+                    * Pass "user_id" property value of AppComponent
+                    to [user_id] property of ReadOneUserComponent.
+                -->
+                    <app-read-one-user *ngIf="show_read_one_user_html" 
+                        (show_read_users_event)="showReadUsers($event)" 
+                        [user_id]="user_id">
+                    </app-read-one-user>
+
+                    <!--
+                    * Show this view if "show_update_user_html" is true.
+                
+                    * Pass "user_id" property value of AppComponent
+                    to [user_id] property of UpdateUserComponent.
+                
+                    * If (show_read_users_event) was emitted in UpdateUserComponent,
+                    trigger showReadUsers() method in AppComponent.
+                -->
+                    <app-update-user *ngIf="show_update_user_html" 
+                        [user_id]="user_id" 
+                        (show_read_users_event)="showReadUsers($event)">
+                    </app-update-user>
+
+                    <!--
+                    * Show this view if "show_delete_user_html" is true.
+                
+                    * Pass "user_id" property value of AppComponent
+                    to [user_id] property of UpdateUserComponent.
+                
+                    * If (show_read_users_event) was emitted in DeleteUserComponent,
+                    trigger showReadUsers() method in AppComponent.
+                -->
+                    <app-delete-user *ngIf="show_delete_user_html" 
+                        [user_id]="user_id" 
+                        (show_read_users_event)="showReadUsers($event)">
+                    </app-delete-user>
+
+                </div>
+                <!-- /container -->
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,48 @@
+<div align="center">
+    <img src="assets/background-top.png" alt="Nequi">
+</div> 
+
+<div class="box">
+
+    <div class="table table-responsive table-bordered">
+
+        <div id="container1">
+
+            <div id="col1">
+
+                <app-menu></app-menu>
+
+            </div>
+            <div id="col2">
+
+                <!-- container -->
+                <div class="container">
+
+                    <!-- show page header -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class='page-header'><h1>{{title}}</h1></div>
+                        </div>
+                    </div>
+
+                    <!-- Show this view if "show_read_unified_html" property of AppComponent is true. -->
+                    <app-read-unified
+                        *ngIf="show_read_unified_html"
+                        (show_read_one_unified_event)="showReadOneUnified($event)">
+                    </app-read-unified>      
+
+                    <!-- Show this view if "show_read_one_unified_html" is true. -->
+                    <app-read-one-unified
+                        *ngIf="show_read_one_unified_html"
+                        (show_read_unified_event)="showReadUnified($event)"
+                        [batch_id]="batch_id">
+                    </app-read-one-unified>     
+                    
+                </div>
+                <!-- /container -->
+
+            </div>
+        </div>
+    </div>
+
+</div>

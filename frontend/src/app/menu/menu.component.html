@@ -1,0 +1,36 @@
+
+<div class="row">
+  <div class="col-md-12">
+
+    <div id="MainMenu">
+      <div class="list-group panel">
+        <a href="#demo3" style="background-color: #2F2461; color:white" class="list-group-item list-group-item-success strong" data-toggle="collapse" data-parent="#MainMenu">Administración<i class="fa fa-caret-down"></i></a>
+        <div class="collapse" id="demo3">
+          <a href="#SubMenu1" class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#SubMenu1">Seguridad <i class="glyphicon glyphicon-chevron-down"></i><i class="fa fa-caret-down"></i></a>
+          <div class="collapse list-group-submenu" id="SubMenu1">
+            <a [routerLink]="['/users']" class="list-group-item" data-parent="#SubMenu1">Usuarios</a>
+            <a href="#" class="list-group-item" data-parent="#SubMenu1">Roles</a>
+            <a href="#" class="list-group-item" data-parent="#SubMenu1">Módulos</a>
+            <a href="#" class="list-group-item" data-parent="#SubMenu1">Privilegios</a>
+          </div>
+          <a href="#" class="list-group-item list-group-item-info">Parametrización</a>
+          <a href="#SubMenu2" class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#SubMenu1">Procesamientos Transaccionales <i class="glyphicon glyphicon-chevron-down"></i><i class="fa fa-caret-down"></i></a>
+          <div class="collapse list-group-submenu" id="SubMenu2">
+            <a href="#" class="list-group-item" data-parent="#SubMenu2">Visor del Autorizador</a>
+            <a [routerLink]="['/transaction']" class="list-group-item" data-parent="#SubMenu2">Transacciones</a>
+            <a href="#SubSubMenu1" class="list-group-item list-group-item-warning strong" data-toggle="collapse" data-parent="#SubSubMenu1">Lotes <i class="glyphicon glyphicon-chevron-down"></i><i class="fa fa-caret-down"></i></a>
+              <div class="collapse list-group-submenu list-group-submenu-1" id="SubSubMenu1">
+                <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Cierre de Lotes por Contingencia</a>
+              </div>
+            <a [routerLink]="['/autom']" class="list-group-item" data-parent="#SubMenu2">Procesos Batch</a>
+            <a [routerLink]="['/unified']" class="list-group-item" data-parent="#SubMenu1">Archivos de Conciliación</a>
+            <a [routerLink]="['/merchants']" class="list-group-item" data-parent="#SubMenu1">Comercios</a>
+            <a href="#" class="list-group-item" data-parent="#SubMenu1">Consulta de Logs</a>
+          </div> 
+          <a [routerLink]="['/login']" class="list-group-item list-group-item-info">Logout</a>     
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

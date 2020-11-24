@@ -1,0 +1,1 @@
+html{height:100%}body{min-height:100%;padding:0;margin:0}#box{min-height:100vh}#box,#container1{position:absolute;width:100%}#container1{float:left;display:table;height:auto}#col1{width:22%}#col1,#col2{float:left;height:100%;vertical-align:top;display:table-cell}#col2{width:78%}

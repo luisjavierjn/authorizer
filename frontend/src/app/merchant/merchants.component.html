@@ -1,0 +1,101 @@
+<div align="center">
+    <img src="assets/background-top.png" alt="Nequi" height="70px" width="1480px">
+</div> 
+
+<div class="box">
+
+    <div class="table table-responsive table-bordered">
+
+        <div id="container1">
+
+            <div id="col1">
+
+                <app-menu></app-menu>
+
+            </div>
+            <div id="col2">
+
+                <!-- container -->
+                <div class="container">
+                
+                    <!-- show page header -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class='page-header'><h1>{{title}}</h1></div>
+                        </div>
+                    </div>
+
+                    <!-- Show this view if "show_read_merchants_html" property of AppComponent is true. -->
+                    <app-read-merchants
+                        *ngIf="show_read_merchants_html"
+                        (show_create_merchant_event)="showCreateMerchant($event)"
+                        (show_read_one_merchant_event)="showReadOneMerchant($event)"
+                        (show_update_merchant_event)="showUpdateMerchant($event)"
+                        (show_delete_merchant_event)="showDeleteMerchant($event)"
+                        (show_load_merchants_event)="showLoadMerchants($event)">
+                    </app-read-merchants>  
+
+                    <!--
+                        * Show this view if "show_create_merchant_html" is true.
+                    
+                        * If (show_read_merchants_event) was emitted in CreateMerchantComponent,
+                        trigger showReadMerchants() method in AppComponent.
+                    -->
+                    <app-create-merchant
+                        *ngIf="show_create_merchant_html"
+                        (show_read_merchants_event)="showReadMerchants($event)">
+                    </app-create-merchant> 
+                
+                    <!--
+                        * Show this view if "show_read_one_merchant_html" is true.
+                    
+                        * If (show_read_merchants_event) was emmited in ReadOneMerchantComponent,
+                        trigger showReadMerchants() method in AppComponent.
+                    
+                        * Pass "merchant_id" property value of AppComponent
+                        to [merchant_id] property of ReadOneMerchantComponent.
+                    -->
+                    <app-read-one-merchant
+                        *ngIf="show_read_one_merchant_html"
+                        (show_read_merchants_event)="showReadMerchants($event)"
+                        [merchant_id]="merchant_id">
+                    </app-read-one-merchant> 
+
+                    <!--
+                        * Show this view if "show_update_merchant_html" is true.
+                    
+                        * Pass "merchant_id" property value of AppComponent
+                        to [merchant_id] property of UpdateMerchantComponent.
+                    
+                        * If (show_read_merchants_event) was emitted in UpdateMerchantComponent,
+                        trigger showReadMerchants() method in AppComponent.
+                    -->
+                    <app-update-merchant
+                        *ngIf="show_update_merchant_html"
+                        [merchant_id]="merchant_id"
+                        (show_read_merchants_event)="showReadMerchants($event)">
+                    </app-update-merchant> 
+
+                    <!--
+                        * Show this view if "show_delete_merchant_html" is true.
+                    
+                        * Pass "merchant_id" property value of AppComponent
+                        to [merchant_id] property of UpdateMerchantComponent.
+                    
+                        * If (show_read_merchants_event) was emitted in DeleteMerchantComponent,
+                        trigger showReadMerchants() method in AppComponent.
+                    -->
+                    <app-delete-merchant
+                        *ngIf="show_delete_merchant_html"
+                        [merchant_id]="merchant_id"
+                        (show_read_merchants_event)="showReadMerchants($event)">
+                    </app-delete-merchant>
+
+                </div>
+                <!-- /container -->
+ 
+            </div>
+        </div>
+    </div>
+
+</div>

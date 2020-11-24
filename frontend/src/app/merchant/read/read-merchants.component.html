@@ -1,0 +1,118 @@
+<div class="row m-b-18px">
+
+    <div class="col-md-12">
+
+        <form [formGroup]="search_merchant_form" (ngSubmit)="searchMerchant()">
+
+            <div class="col-md-2">
+                <select formControlName="merchant_filter" name='merchant_filter' class='form-control'>
+                    <option value='merchant_id'>ID</option>
+                    <option value='merchant_name'>NAME</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <input formControlName="merchant_value" name="merchant_value" type="text" class="form-control" />
+            </div>
+
+            <button class="btn btn-primary pull-left" type="submit" [disabled]="search_merchant_form.invalid">
+                <span class="glyphicon glyphicon-search"></span> Search
+            </button>
+
+        </form>
+        <a (click)="createMerchant()" class='btn btn-primary pull-right'>
+            <span class='glyphicon glyphicon-plus'></span> Create
+        </a>
+
+        <div class="col-md-2">
+            <label class="btn btn-primary btn-file">
+                <span class='glyphicon glyphicon-upload'></span>
+                Load File <input type="file" hidden 
+                accept=".csv" (change)="uploadFile($event)">                
+            </label>
+        </div>
+
+    </div>
+</div>
+<br/>
+<div class="row">
+
+    <div class="col-md-12">
+
+        <!-- HTML table for our list of merchant records -->
+        <table class='table table-hover table-responsive table-bordered'>
+
+            <tr>
+                <th>ID</th>
+                <th>Merchant Name</th>
+                <th>Account Hogan Nro</th>
+                <th>Ruc Nro</th>
+                <th>Check Digit</th>
+                <th>% Retention</th>
+                <th>Commission</th>
+                <th>Commission Itbms</th>
+                <th>Status</th>
+                <th>Channel</th>
+                <th>Actions</th>
+            </tr>
+
+            <!-- Use *ngFor directive to loop throught our list of merchants. -->
+            <tr *ngFor="let merchant of pagedItems">
+                <td>{{merchant.merchantId}}</td>
+                <td>{{merchant.merchantName}}</td>
+                <td>{{merchant.accountHoganNo}}</td>
+                <td>{{merchant.rucNo}}</td>
+                <td>{{merchant.checkDigit}}</td>
+                <td>{{merchant.percentageRetention}}</td>
+                <td>{{merchant.commission}}</td>
+                <td>{{merchant.commissionItbms}}</td>
+                <td>{{merchant.status == 1 ? 'active' : 'inactive'}}</td>
+                <td>
+                    <div *ngFor="let channel of channels">
+                        <div *ngIf="merchant.channel == channel.id">
+                            {{channel.name}}
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <!-- read one merchant button -->
+                    <a (click)="readOneMerchant(merchant.merchantId)" class='btn btn-primary m-r-5px'>
+                        <span class='glyphicon glyphicon-eye-open'></span> Read
+                    </a>
+
+                    <!-- edit merchant button -->
+                    <a (click)="updateMerchant(merchant.merchantId)" class='btn btn-info m-r-5px'>
+                        <span class='glyphicon glyphicon-edit'></span> Edit
+                    </a>
+
+                    <!-- delete merchant button -->
+                    <a (click)="deleteMerchant(merchant.merchantId)" class='btn btn-danger m-r-5px'>
+                        <span class='glyphicon glyphicon-remove'></span> Delete
+                    </a>
+                </td>
+            </tr>
+        </table>
+
+        <div align="center">
+            <!-- pager -->
+            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(1)">First</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                </li>
+                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                    <a (click)="setPage(page)">{{page}}</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.totalPages)">Last</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>

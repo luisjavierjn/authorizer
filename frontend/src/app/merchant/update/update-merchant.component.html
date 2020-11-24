@@ -1,0 +1,200 @@
+<div class="row m-b-18px">
+    <div class="col-md-12">
+        <a (click)="readMerchants()" class='btn btn-primary pull-right'>
+            <span class='glyphicon glyphicon-list'></span> Read Merchants
+        </a>
+    </div>
+</div>
+ 
+<div class="row">
+<div class="col-md-12">
+ 
+<!-- HTML form for creating a merchant -->
+<form [formGroup]="update_merchant_form" (ngSubmit)="updateMerchant()">
+<table class='table table-hover table-responsive table-bordered'>
+
+    <tr>
+        <td>ID</td>
+        <td>
+            <input formControlName="merchantId"
+                type='text' name='merchantId' readonly
+                class='form-control' required />
+ 
+            <!-- show this error if the field is 'touched' and 'empty' -->
+            <div
+                *ngIf="update_merchant_form.get('merchantId').touched && update_merchant_form.get('merchantId').hasError('required')"
+                class="alert alert-danger">
+                ID is required.
+            </div>
+        </td>
+    </tr>
+ 
+    <tr>
+        <td>Merchant Name</td>
+        <td>
+            <input formControlName="merchantName"
+                type='text' name='merchantName' readonly
+                class='form-control' required />
+ 
+            <!-- show this error if the field is 'touched' and 'empty' -->
+            <div
+                *ngIf="update_merchant_form.get('merchantName').touched && update_merchant_form.get('merchantName').hasError('required')"
+                class="alert alert-danger">
+                Merchant Name is required.
+            </div>
+        </td>
+    </tr>
+ 
+    <tr>
+        <td>Account Hogan Nro</td>
+        <td>
+            <input
+                formControlName="accountHoganNo"
+                name='accountHoganNo' class='form-control' required />
+ 
+            <!-- show this error if the field is 'touched' and 'empty' -->
+            <div
+                *ngIf="update_merchant_form.get('accountHoganNo').touched && update_merchant_form.get('accountHoganNo').hasError('required')"
+                class="alert alert-danger">
+                Account Hogan Nro is required.
+            </div>
+        </td>
+    </tr>
+ 
+    <tr>
+        <td>Ruc Nro</td>
+        <td>
+            <input
+                formControlName="rucNo"
+                name='rucNo' class='form-control' />
+ 
+            <!-- show this error if the field is 'touched' and 'empty' -->
+            <div
+                *ngIf="update_merchant_form.get('rucNo').touched && update_merchant_form.get('rucNo').hasError('required')"
+                class="alert alert-danger">
+                Ruc Nro is required.
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Check Digit</td>
+        <td>
+            <input
+                formControlName="checkDigit"
+                name='checkDigit' class='form-control' />
+ 
+            <!-- show this error if the field is 'touched' and 'empty' -->
+            <div
+                *ngIf="update_merchant_form.get('checkDigit').touched && update_merchant_form.get('checkDigit').hasError('required')"
+                class="alert alert-danger">
+                Check Digit is required.
+            </div>
+        </td>
+    </tr>
+ 
+    <tr>
+        <td>Percentage Retention</td>
+        <td>
+            <input
+                formControlName="percentageRetention"
+                name='percentageRetention' class='form-control' />
+ 
+            <!-- show this error if the field is 'touched' and 'empty' -->
+            <div
+                *ngIf="update_merchant_form.get('percentageRetention').touched && update_merchant_form.get('percentageRetention').hasError('required')"
+                class="alert alert-danger">
+                Percentage Retention is required.
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Commission</td>
+        <td>
+            <input
+                formControlName="commission"
+                name='commission' class='form-control' />
+ 
+            <!-- show this error if the field is 'touched' and 'empty' -->
+            <div
+                *ngIf="update_merchant_form.get('commission').touched && update_merchant_form.get('commission').hasError('required')"
+                class="alert alert-danger">
+                Commission is required.
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Commission Itbms</td>
+        <td>
+            <input
+                formControlName="commissionItbms"
+                name='commissionItbms' class='form-control' />
+ 
+            <!-- show this error if the field is 'touched' and 'empty' -->
+            <div
+                *ngIf="update_merchant_form.get('commissionItbms').touched && update_merchant_form.get('commissionItbms').hasError('required')"
+                class="alert alert-danger">
+                Commission Itbms is required.
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Status</td>
+        <td>
+            <select formControlName="status" name='status' class='form-control'>
+                <option
+                    *ngFor="let a of actives"
+                    [selected]="status==a.id"
+                    value='{{a.id}}'>
+                    {{a.text}}
+                </option>
+            </select>            
+            
+                 <!--show this error if the field is 'touched' and 'empty' -->
+            <div
+                *ngIf="update_merchant_form.get('status').touched && update_merchant_form.get('status').hasError('required')"
+                class="alert alert-danger">
+                Status is required.
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Channel</td>
+        <td>
+            <select formControlName="channel" name='channel' class='form-control'>
+                <option
+                    *ngFor="let channel of channels"
+                    [selected]="channel==channel.id"
+                    value='{{channel.id}}'>
+                    {{channel.name}}
+                </option>
+            </select>
+ 
+            <!-- show this error if the field is 'touched' and 'empty' -->
+            <div
+                *ngIf="update_merchant_form.get('channel').touched && update_merchant_form.get('channel').hasError('required')"
+                class="alert alert-danger">
+                Channel is required.
+            </div>
+        </td>
+    </tr>
+ 
+    <tr>
+        <td></td>
+        <td>
+            <!-- Submit buttons is [disabled] if form is invalid. -->
+            <button class="btn btn-primary" type="submit" [disabled]="update_merchant_form.invalid">
+                <span class="glyphicon glyphicon-edit"></span> Update
+            </button>
+        </td>
+    </tr>
+ 
+</table>
+</form>
+ 
+</div>
+</div>

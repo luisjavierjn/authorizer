@@ -1,0 +1,107 @@
+
+<div class="row m-b-18px">
+
+    <div class="col-md-12">
+
+        <form [formGroup]="search_users_form" (ngSubmit)="searchUsers()">
+
+            <div class="col-md-2">
+                <select formControlName="user_filter" name='user_filter' class='form-control'>
+                    <option value='peoplesoft'>ID</option>
+                    <option value='username'>NAME</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <input formControlName="user_value" name="user_value" type="text" class="form-control" />
+            </div>
+
+            <button class="btn btn-primary pull-left" type="submit" [disabled]="search_users_form.invalid">
+                <span class="glyphicon glyphicon-search"></span> Search
+            </button>
+
+        </form>
+        <!-- button to create new user -->
+        <a (click)="createUser()" class='btn btn-primary pull-right'>
+            <span class='glyphicon glyphicon-plus'></span> Create User
+        </a>
+
+    </div>
+</div>
+
+<br/>
+
+<div class="row">
+    <div class="col-md-12">
+ 
+        <!-- HTML table for our list of user records -->
+        <table class='table table-hover table-responsive table-bordered'>
+ 
+            <tr>
+                <th>Peoplesoft</th>
+                <th>Username</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+ 
+            <!-- Use *ngFor directive to loop throught our list of users. -->
+            <tr *ngFor="let user of pagedItems">
+                <td>{{user.id}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.phone_number}}</td>
+                <td>{{user.email}}</td>                
+                <td>{{user.status == 1 ? 'active' : 'inactive'}}</td>
+                <td>
+                    <div *ngFor="let role of roles">
+                        <div *ngIf="user.fk_roles == role.id">
+                        {{role.rolename}}
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <!-- read one user button -->
+                    <a (click)="readOneUser(user.id)" class='btn btn-primary m-r-5px'>
+                        <span class='glyphicon glyphicon-eye-open'></span> Read
+                    </a>
+ 
+                    <!-- edit user button -->
+                    <a (click)="updateUser(user.id)" class='btn btn-info m-r-5px'>
+                        <span class='glyphicon glyphicon-edit'></span> Edit
+                    </a>
+ 
+                    <!-- delete user button -->
+                    <a (click)="deleteUser(user.id)" class='btn btn-danger m-r-5px'>
+                        <span class='glyphicon glyphicon-remove'></span> Delete
+                    </a>
+                </td>
+            </tr>
+        </table>
+
+        <div align="center">
+            <!-- pager -->
+            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(1)">First</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                </li>
+                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                    <a (click)="setPage(page)">{{page}}</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.totalPages)">Last</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+

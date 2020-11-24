@@ -1,0 +1,119 @@
+<div class="row m-b-18px">
+
+    <div class="col-md-12">
+
+        <form [formGroup]="search_transaction_form" (ngSubmit)="searchTransaction()">
+
+            <div class="col-md-2">
+                <input formControlName="merchant_id" name="merchant_id" type="text" class="form-control" placeholder="Merchant Id" />
+            </div>
+
+            <div class="col-md-2">
+                <input formControlName="terminal_id" name="terminal_id" type="text" class="form-control" placeholder="Terminal Id" />
+            </div>
+
+            <div class="col-md-2">
+                <input formControlName="rrn_token_trans" name="rrn_token_trans" type="text" class="form-control" placeholder="Token Trans."
+                />
+            </div>
+
+            <div class="col-md-2">
+                <input formControlName="lot_no" name="lot_no" type="number" class="form-control" placeholder="Lot Number" />
+            </div>
+
+            <div class="col-md-2">
+                <input formControlName="tran_date_from" name="tran_date_from" type="date" class="form-control" placeholder="From date" />
+            </div>
+
+            <div class="col-md-2">
+                <input formControlName="tran_date_to" name="tran_date_to" type="date" class="form-control" placeholder="To date." />
+            </div>
+
+            <div class="col-md-2">
+                <button class="btn btn-primary pull-left" type="submit" [disabled]="search_transaction_form.invalid">
+                    <span class="glyphicon glyphicon-search"></span> Search
+                </button>
+            </div>
+
+
+        </form>
+        <hr/>
+        <div class="col-md-2">
+            <a (click)="downloadFile()" class='btn btn-info m-r-5px'>
+                <span class='glyphicon glyphicon-download'></span> Download
+            </a>
+        </div>
+
+    </div>
+</div>
+<br/>
+<div class="row">
+
+    <div class="col-md-12">
+
+        <!-- HTML table for our list of merchant records -->
+        <table class='table table-hover table-responsive table-bordered'>
+
+            <tr>
+                <th>ID</th>
+                <th>Merchant Id</th>
+                <th>Terminal Id</th>
+                <th>Token Transaction</th>
+                <th>Date Transaction</th>
+                <th>Channel Tran.</th>
+                <th>Lot Number</th>
+                <th>Document Number</th>
+                <th>Tran. Status</th>
+                <th>Tran. Amount</th>
+                <th>Tran. Tax Amount</th>
+                <th>Tran. Tip Amount</th>
+                <th>Account Customer</th>
+                <th>Account Countable</th>
+                <th>Process Date</th>
+                <th>Last Update</th>
+            </tr>
+
+            <!-- Use *ngFor directive to loop throught our list of merchants. -->
+            <tr *ngFor="let t of pagedItems">
+                <td>{{t.id}}</td>
+                <td>{{t.merchant}}</td>
+                <td>{{t.terminalId}}</td>
+                <td>{{t.rrnTokenTrans}}</td>
+                <td>{{t.tranDate | date:'medium'}}</td>
+                <td>{{t.channel}}</td>
+                <td>{{t.lotNo}}</td>
+                <td>{{t.documentNo}}</td>
+                <td>{{t.operationStatus}}</td>
+                <td>{{t.tranAmount}}</td>
+                <td>{{t.tranTaxAmount}}</td>
+                <td>{{t.tranTipAmount}}</td>
+                <td>{{t.acctCustomer}}</td>
+                <td>{{t.acctCountable}}</td>
+                <td>{{t.processDate | date:'medium'}}</td>
+                <td>{{t.lastUpdate | date:'medium'}}</td>
+            </tr>
+        </table>
+
+        <div align="center">
+            <!-- pager -->
+            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(1)">First</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+                </li>
+                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                    <a (click)="setPage(page)">{{page}}</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.currentPage + 1)">Next</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.totalPages)">Last</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
